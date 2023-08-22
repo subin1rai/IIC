@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage> {
             
           ]),
       appBar: AppBar(
+        elevation: 1.5,
         backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text("Itahari International College",
