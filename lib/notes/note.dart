@@ -13,6 +13,15 @@ class Notes extends StatefulWidget {
 }
 
 class _NotesState extends State<Notes> {
+  List<Noteiic> filteredNotes = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    filteredNotes = sampleNotes;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +58,7 @@ class _NotesState extends State<Notes> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: TextField(
+                onChanged: onSerch,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 12),
                   hintText: "Search Notes...",
@@ -72,8 +82,7 @@ class _NotesState extends State<Notes> {
             ),
             Expanded(
                 child: ListView.builder(
-                  
-              itemCount: sampleNotes.length,
+              itemCount: filteredNotes.length,
               itemBuilder: (context, index) {
                 return Card(
                   color: getRandomColor(),
@@ -84,10 +93,9 @@ class _NotesState extends State<Notes> {
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: ListTile(
-                      
                       title: RichText(
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
                           text: TextSpan(
                               text: "${sampleNotes[index].title} \n",
                               style: TextStyle(
@@ -96,15 +104,15 @@ class _NotesState extends State<Notes> {
                                   fontSize: 18,
                                   height: 1.5),
                               children: [
-                            TextSpan(
-                                text: "${sampleNotes[index].content}",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 14,
-                                  height: 1.5,
-                                ))
-                          ])),
+                                TextSpan(
+                                    text: "${sampleNotes[index].content}",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14,
+                                      height: 1.5,
+                                    ))
+                              ])),
                       subtitle: Padding(
                         padding: const EdgeInsets.only(top: 8.0),
                         child: Text(
@@ -115,8 +123,23 @@ class _NotesState extends State<Notes> {
                               color: Colors.grey[800]),
                         ),
                       ),
-                      trailing:
-                          IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                      trailing: IconButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    backgroundColor: Colors.grey[300],
+                                    icon: Icon(Icons.info,color: Colors.black,
+                                    
+                                    ),
+                                    title : Text("Are you sure you want to delete?",style: TextStyle(color: Colors.black),)
+                                    
+                                  );
+                                });
+                            delteNote(index);
+                          },
+                          icon: Icon(Icons.delete)),
                     ),
                   ),
                 );
@@ -132,9 +155,25 @@ class _NotesState extends State<Notes> {
       ),
     );
   }
-  getRandomColor(){
 
+  getRandomColor() {
     Random random = Random();
     return backgroundColors[random.nextInt(backgroundColors.length)];
+  }
+
+  void onSerch(String searchText) {
+    setState(() {
+      filteredNotes = sampleNotes
+          .where((note) =>
+              note.content.toLowerCase().contains(searchText.toLowerCase()) ||
+              note.title.toLowerCase().contains(searchText.toLowerCase()))
+          .toList();
+    });
+  }
+
+  void delteNote(int index) {
+    setState(() {
+      filteredNotes.removeAt(index);
+    });
   }
 }
