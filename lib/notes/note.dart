@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:iic/notes/edit.dart';
 import 'package:iic/notes/not.dart';
 import 'package:iic/notes/style/color.dart';
 import 'package:intl/intl.dart';
@@ -124,20 +125,11 @@ class _NotesState extends State<Notes> {
                         ),
                       ),
                       trailing: IconButton(
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    backgroundColor: Colors.grey[300],
-                                    icon: Icon(Icons.info,color: Colors.black,
-                                    
-                                    ),
-                                    title : Text("Are you sure you want to delete?",style: TextStyle(color: Colors.black),)
-                                    
-                                  );
-                                });
-                            delteNote(index);
+                          onPressed: () async {
+                            final result = await conformDialog(context);
+                            if (result != null && result) {
+                              delteNote(index);
+                            }
                           },
                           icon: Icon(Icons.delete)),
                     ),
@@ -150,10 +142,72 @@ class _NotesState extends State<Notes> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF21409A),
-        onPressed: () {},
+        onPressed: () async {
+          final result = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => EditScreen()));
+          if (result != null) {
+            setState(() {
+               sampleNotes.add(Noteiic(
+                id: sampleNotes.length,
+                title: result[0],
+                content: result[1],
+                modifiedTime: DateTime.now()));
+                filteredNotes = sampleNotes;
+            });
+           
+          }
+        },
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  Future<dynamic> conformDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              backgroundColor: Colors.grey[300],
+              icon: Icon(
+                Icons.info,
+                color: Colors.black,
+              ),
+              title: Text(
+                "Are you sure you want to delete?",
+                style: TextStyle(color: Colors.black),
+              ),
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green),
+                      onPressed: () {
+                        Navigator.pop(context, true);
+                      },
+                      child: SizedBox(
+                        width: 60,
+                        child: const Text("Yes",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black)),
+                      )),
+                  ElevatedButton(
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                      onPressed: () {
+                        Navigator.pop(context, false);
+                      },
+                      child: SizedBox(
+                        width: 60,
+                        child: const Text("Cancel",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black)),
+                      ))
+                ],
+              ));
+        });
   }
 
   getRandomColor() {
@@ -173,6 +227,8 @@ class _NotesState extends State<Notes> {
 
   void delteNote(int index) {
     setState(() {
+      Noteiic note = filteredNotes[index];
+      sampleNotes.remove(note);
       filteredNotes.removeAt(index);
     });
   }
