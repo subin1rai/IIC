@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:iic/homepage.dart';
 
 void main() async {
-
+WidgetsFlutterBinding.ensureInitialized();
   //init the hive
   await Hive.initFlutter();
 

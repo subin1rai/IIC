@@ -40,7 +40,7 @@ class _TodoState extends State<Todo> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white, 
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: FloatingActionButton(backgroundColor: Color(0xFF21409A),
           onPressed: createNewTask,
           child: Icon(Icons.add),
         ),
