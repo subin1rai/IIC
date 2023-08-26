@@ -18,6 +18,8 @@ class _TodoState extends State<Todo> {
   final _myBox = Hive.box('myBox');
   TodoDatabase db = TodoDatabase();
 
+  
+
   final _controller = TextEditingController();
 
   @override
@@ -33,6 +35,8 @@ class _TodoState extends State<Todo> {
 
 
     super.initState();
+
+    
   }
 
 
