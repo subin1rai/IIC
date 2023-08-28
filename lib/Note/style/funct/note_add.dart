@@ -19,7 +19,6 @@ class _NoteAddScreenState extends State<NoteAddScreen> {
     TextEditingController titleController = TextEditingController();
     TextEditingController contentController = TextEditingController();
 
-    
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: NoteColor.accentColor,
@@ -27,17 +26,19 @@ class _NoteAddScreenState extends State<NoteAddScreen> {
           FirebaseFirestore.instance.collection("Notes").add({
             "note_title": titleController.text,
             "creation_date": date,
-            "note_content":contentController.text,
+            "note_content": contentController.text,
             "color_id": color_id
           }).then((value) {
             print(value.id);
             Navigator.pop(context);
-          }).catchError((error)=>print('Failed to add new note due to $error'));
+          }).catchError(
+              (error) => print('Failed to add new note due to $error'));
         },
         child: Icon(Icons.save),
       ),
       backgroundColor: NoteColor.cardColor[color_id],
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: NoteColor.cardColor[color_id],
         elevation: 0,
         title: Text(
@@ -83,9 +84,5 @@ class _NoteAddScreenState extends State<NoteAddScreen> {
         ),
       ),
     );
-
   }
-   
-  } 
- 
-
+}
