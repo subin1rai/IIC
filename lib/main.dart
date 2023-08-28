@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:iic/homepage.dart';
-import 'package:iic/notes/style/Note_data.dart';
-import 'package:provider/provider.dart';
-
-void main() async {
+import 'package:firebase_core/firebase_core.dart';
+Future <void>main() async {
 WidgetsFlutterBinding.ensureInitialized();
   //init the hive
   await Hive.initFlutter();
+  await Firebase.initializeApp();
 
   //open a box 
   var box = await Hive.openBox("myBox");
@@ -18,12 +17,9 @@ class Iic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(create: (context)=> NoteData(),
-    builder: (contex,child) =>MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home:  HomePage(),
-    )
-      
     );
   }
 }

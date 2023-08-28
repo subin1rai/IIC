@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:iic/schedule/schedule.dart';
 import 'package:iic/todo/todo.dart';
 
-import 'notes/note.dart';
+import 'Note/notes.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
