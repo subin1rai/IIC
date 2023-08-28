@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class Subject extends StatelessWidget {
   final String subText;
-  final Icon relatedIcon;
+  final Image relatedIcon;
   final String time;
   final String hall;
+  final Color color;
 
   Subject(
       {super.key,
       required this.subText,
+      required this.color,
       required this.relatedIcon,
       required this.time,
       required this.hall});
@@ -16,11 +18,13 @@ class Subject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(22),
+      padding: const EdgeInsets.all(10),
+      
       child: Container(
-        height: 90,
+
+        // height: 90,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: color,
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
@@ -38,7 +42,7 @@ class Subject extends StatelessWidget {
               SizedBox(height: 10),
               Text(
                 subText,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               SizedBox(height: 5),
               Row(

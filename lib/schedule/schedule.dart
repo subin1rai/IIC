@@ -10,22 +10,48 @@ class Schedule extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child:GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-             children: [
+              child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, childAspectRatio: 1 / 0.9),
+                  children: [
                 Subject(
-                    subText: 'Programming',
-                    relatedIcon: Icon(
-                      Icons.person,
-                      size: 60,
-                    ),
+                    subText: 'ADv Programming',
+                    color: Colors.green.shade100,
+                    relatedIcon: Image.asset('assets/sunday.png'),
                     time: '2:30 Pm',
                     hall: 'SunKoshi'),
-               
-        ])
-            
-          )
+                Subject(
+                    subText: 'Database',
+                    color: Colors.blue.shade100,
+                    relatedIcon: Image.asset('assets/monday.png'),
+                    time: '2:30 Pm',
+                    hall: 'SunKoshi'),
+                Subject(
+                    subText: 'Network Operating',
+                    color: Colors.yellow.shade100,
+                    relatedIcon: Image.asset('assets/tuesday.png'),
+                    time: '2:30 Pm',
+                    hall: 'SunKoshi'),
+                Subject(
+                    subText: 'software engineer',
+                    color: Colors.deepPurple.shade100,
+                    relatedIcon: Image.asset('assets/wednesday.png'),
+                    time: '2:30 Pm',
+                    hall: 'SunKoshi'),
+                Subject(
+                    subText: 'smart Data Disc',
+                    color: Colors.orange.shade100,
+                    relatedIcon: Image.asset('assets/thursday.png'),
+                    time: '2:30 Pm',
+                    hall: 'SunKoshi'),
+                Subject(
+                    subText: 'IOT',
+                    color: Colors.red.shade200,
+                    relatedIcon: Image.asset('assets/friday.png'),
+                    time: '2:30 Pm',
+                    hall: 'SunKoshi'),
+              ]))
         ],
-
       ),
     );
   }
