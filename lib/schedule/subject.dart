@@ -26,7 +26,7 @@ class Subject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(5),
       child: Container(
           height: 85,
           decoration: BoxDecoration(
@@ -40,24 +40,66 @@ class Subject extends StatelessWidget {
                     offset: Offset(5, 5))
               ]),
           child: Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: relatedIcon,
               ),
-              Column(
-                children: [
-                  Text(
-                    sub1,
-                    style: GoogleFonts.poppins(
-                        fontSize: 14, fontWeight: FontWeight.w600),
-
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,13,0,15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      sub1,
+                      style: GoogleFonts.poppins(
+                          fontSize: 14, fontWeight: FontWeight.w600),
+              
+                    ),
+                    SizedBox(height: 5,),
+                    Text(time,style:GoogleFonts.poppins(fontSize: 12)),
+                    SizedBox(height: 5,),
+                    Row(
+                        children: [
+                          Text('Hall: ',style: TextStyle(fontWeight: FontWeight.w500
+                          ),),
+                          Text( hall1,style:GoogleFonts.poppins(fontSize: 11)),
+                        ],
+                      ),
+              
+                  ],
+                ),
+              ),
+              Padding(
+                                padding: const EdgeInsets.fromLTRB(20,14,0,15),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        sub2,
+                        style: GoogleFonts.poppins(
+                            fontSize: 14, fontWeight: FontWeight.w600),
+                
+                      ),
+                      SizedBox(height: 5,),
+                      Text(time2,style:GoogleFonts.poppins(fontSize: 12)),
+                      SizedBox(height: 5,),
+                      Row(
+                        children: [
+                          Text('Hall: ',style: TextStyle(fontWeight: FontWeight.w500
+                          ),),
+                          Text( hall2,style:GoogleFonts.poppins(fontSize: 11)),
+                        ],
+                      ),
+                
+                    ],
                   ),
-                  Text(time,style:)
-                ],
-              )
+              ),
             ],
-          )),
+          )
+          ),
+
     );
   }
 }
