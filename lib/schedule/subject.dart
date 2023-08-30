@@ -1,78 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Subject extends StatelessWidget {
-  final String subText;
+  final String sub1;
+  final String sub2;
   final Image relatedIcon;
   final String time;
-  final String hall;
+  final String time2;
+  final String hall1;
+  final String hall2;
   final Color color;
 
-  Subject(
-      {super.key,
-      required this.subText,
-      required this.color,
-      required this.relatedIcon,
-      required this.time,
-      required this.hall});
+  Subject({
+    super.key,
+    required this.sub1,
+    required this.sub2,
+    required this.color,
+    required this.relatedIcon,
+    required this.time,
+    required this.time2,
+    required this.hall1,
+    required this.hall2,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      
       child: Container(
-
-        // height: 90,
-        decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                  color: Color.fromARGB(255, 212, 212, 212),
-                  spreadRadius: 0,
-                  blurRadius: 12,
-                  offset: Offset(5, 5))
-            ]),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          height: 85,
+          decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                    color: Color.fromARGB(255, 212, 212, 212),
+                    spreadRadius: 0,
+                    blurRadius: 12,
+                    offset: Offset(5, 5))
+              ]),
+          child: Row(
             children: [
-              Center(child: Container(height: 45, child: relatedIcon)),
-              SizedBox(height: 10),
-              Text(
-                subText,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: relatedIcon,
               ),
-              SizedBox(height: 5),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              Column(
                 children: [
-                  // Text(
-                  //   'Hall : ',style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18
-                  // ),),
-                  Icon(Icons.house_rounded),
                   Text(
-                    ' : $hall',
-                    style: TextStyle(fontSize: 16),
+                    sub1,
+                    style: GoogleFonts.poppins(
+                        fontSize: 14, fontWeight: FontWeight.w600),
+
                   ),
-                ],
-              ),
-              SizedBox(height: 5),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // Text('Time : ',
-                  //     style:
-                  //         TextStyle(fontWeight: FontWeight.w700, fontSize: 18)),
-                  Icon(Icons.timer),
-                  Text(' :  $time', style: TextStyle(fontSize: 14))
+                  Text(time,style:)
                 ],
               )
             ],
-          ),
-        ),
-      ),
+          )),
     );
   }
 }

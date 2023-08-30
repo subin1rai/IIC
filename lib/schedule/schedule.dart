@@ -10,47 +10,23 @@ class Schedule extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-              child: GridView(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, childAspectRatio: 1 / 0.9),
+              child:
+              Padding(
+                padding: const EdgeInsets.fromLTRB(18,16,18,0),
+                child: ListView(
                   children: [
-                Subject(
-                    subText: 'ADv Programming',
-                    color: Colors.green.shade100,
-                    relatedIcon: Image.asset('assets/sunday.png'),
-                    time: '2:30 Pm',
-                    hall: 'SunKoshi'),
-                Subject(
-                    subText: 'Database',
-                    color: Colors.blue.shade100,
-                    relatedIcon: Image.asset('assets/monday.png'),
-                    time: '2:30 Pm',
-                    hall: 'SunKoshi'),
-                Subject(
-                    subText: 'Network Operating',
-                    color: Colors.yellow.shade100,
-                    relatedIcon: Image.asset('assets/tuesday.png'),
-                    time: '2:30 Pm',
-                    hall: 'SunKoshi'),
-                Subject(
-                    subText: 'software engineer',
-                    color: Colors.deepPurple.shade100,
-                    relatedIcon: Image.asset('assets/wednesday.png'),
-                    time: '2:30 Pm',
-                    hall: 'SunKoshi'),
-                Subject(
-                    subText: 'smart Data Disc',
-                    color: Colors.orange.shade100,
-                    relatedIcon: Image.asset('assets/thursday.png'),
-                    time: '2:30 Pm',
-                    hall: 'SunKoshi'),
-                Subject(
-                    subText: 'IOT',
-                    color: Colors.red.shade200,
-                    relatedIcon: Image.asset('assets/friday.png'),
-                    time: '2:30 Pm',
-                    hall: 'SunKoshi'),
-              ]))
+                    Subject(
+                      sub1: 'ADv Programming',
+                      sub2: 'ADv Programmingfffff',
+                      color: Colors.green.shade100,
+                      relatedIcon: Image.asset('assets/sunday.png',height: 47,width: 47,),
+                      time: '2:30 Pm',
+                      time2: '2:30 Pm',
+                      hall1: 'SunKoshi',
+                      hall2: 'SunKoshi'),],
+                ),
+              )
+              )
         ],
       ),
     );
